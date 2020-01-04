@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ASYNC"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\test\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="asyncc">
+				<Option output="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/libasyncc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/include"/>
+					<Add directory="/usr/lib64/gcc/x86_64-pld-linux/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 asyncc"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="asyncc/fast">
+				<Option output="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/libasyncc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/include"/>
+					<Add directory="/usr/lib64/gcc/x86_64-pld-linux/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 asyncc/fast"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_await">
+				<Option output="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/test_await" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/include"/>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/test/.."/>
+					<Add directory="/usr/lib64/gcc/x86_64-pld-linux/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 test_await"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_await/fast">
+				<Option output="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/test_await" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/include"/>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/test/.."/>
+					<Add directory="/usr/lib64/gcc/x86_64-pld-linux/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 test_await/fast"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_defer">
+				<Option output="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/test_defer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/include"/>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/test/.."/>
+					<Add directory="/usr/lib64/gcc/x86_64-pld-linux/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 test_defer"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_defer/fast">
+				<Option output="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/test_defer" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/include"/>
+					<Add directory="/tmp/tmp.7SuB7nBQlt/test/.."/>
+					<Add directory="/usr/lib64/gcc/x86_64-pld-linux/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 test_defer/fast"/>
+					<CompileFile command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j48 -f &quot;/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/future.c">
+			<Option target="asyncc"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/future.h">
+			<Option target="asyncc"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/queue.c">
+			<Option target="asyncc"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/queue.h">
+			<Option target="asyncc"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/test/await.c">
+			<Option target="test_await"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/test/defer.c">
+			<Option target="test_defer"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/threadpool.c">
+			<Option target="asyncc"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/threadpool.h">
+			<Option target="asyncc"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/test/macierz.sh.in">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.7SuB7nBQlt/test/silnia.sh.in">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

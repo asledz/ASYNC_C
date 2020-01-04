@@ -1,0 +1,2 @@
+/usr/bin/ar qc libasyncc.a  CMakeFiles/asyncc.dir/threadpool.c.o CMakeFiles/asyncc.dir/future.c.o CMakeFiles/asyncc.dir/queue.c.o
+/usr/bin/ranlib libasyncc.a

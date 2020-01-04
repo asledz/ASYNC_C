@@ -1,0 +1,1 @@
+/usr/bin/cc -g -Wall -Wextra -pthread -g  -rdynamic CMakeFiles/test_defer.dir/defer.c.o  -o test_defer ../libasyncc.a 

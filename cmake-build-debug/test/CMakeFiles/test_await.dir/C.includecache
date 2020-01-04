@@ -1,0 +1,50 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../future.h
+threadpool.h
+../threadpool.h
+
+../queue.h
+stddef.h
+-
+
+../threadpool.h
+stddef.h
+-
+pthread.h
+-
+semaphore.h
+-
+stddef.h
+-
+stdint.h
+-
+stdio.h
+-
+stdlib.h
+-
+stdbool.h
+-
+queue.h
+../queue.h
+
+/Users/anitas/Documents/2rok/PW/Zadanie zaliczeniowe 2 Asynchroniczne C-20191228/test/await.c
+stdint.h
+-
+stdio.h
+-
+stdlib.h
+-
+future.h
+/Users/anitas/Documents/2rok/PW/Zadanie zaliczeniowe 2 Asynchroniczne C-20191228/test/future.h
+minunit.h
+/Users/anitas/Documents/2rok/PW/Zadanie zaliczeniowe 2 Asynchroniczne C-20191228/test/minunit.h
+
+/Users/anitas/Documents/2rok/PW/Zadanie zaliczeniowe 2 Asynchroniczne C-20191228/test/minunit.h
+

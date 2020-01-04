@@ -1,0 +1,17 @@
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/install/strip.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/install/local.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/test.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/asyncc.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/rebuild_cache.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/edit_cache.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/install.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/CMakeFiles/list_install_components.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/install/strip.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/install/local.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/install.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/list_install_components.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/test_await.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/edit_cache.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/test_defer.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/test.dir
+/tmp/tmp.7SuB7nBQlt/cmake-build-debug-remote-host/test/CMakeFiles/rebuild_cache.dir
