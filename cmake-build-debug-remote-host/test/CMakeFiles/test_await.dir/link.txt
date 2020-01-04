@@ -1,1 +1,0 @@
-/usr/bin/cc -g -Wall -Wextra -pthread -g  -rdynamic CMakeFiles/test_await.dir/await.c.o  -o test_await ../libasyncc.a 
