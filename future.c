@@ -1,7 +1,9 @@
 #include "future.h"
 
-#define READY 1
-#define PENDING 0
+typedef enum {
+    ready       =  0,
+    pending     = -1
+} future_status_t;
 
 typedef void *(*function_t)(void *);
 
@@ -16,7 +18,7 @@ void fun(void *future, size_t size){
     future_t *fut = (future_t*)future;
     fut->result = (*(fut->callable->function))(fut->callable->arg, fut->callable->argsz, &(fut->result_size));
 
-    fut->status = READY;
+    fut->status = ready;
     free(fut->callable);
     if(sem_post(&(fut->mutex))) return; //SEMAPHORE_ERROR
 }
@@ -29,7 +31,7 @@ void map_fun(void *args, size_t size) {
 
     my_data->to->result = (my_data->function)(temp_res, temp_size, &(my_data->from->result_size));
 
-    my_data->to->status = READY;
+    my_data->to->status = ready;
 //    free(my_data->from->callable);
     if(sem_post(&(my_data->to->mutex))) return; //todo: SEMAPHORE_ERROR
     free(my_data);
@@ -54,7 +56,7 @@ int async(thread_pool_t *pool, future_t *future, callable_t callable) {
         return semaphore_error;
     }
 
-    future->status = PENDING;
+    future->status = pending;
 
     int err;
 
@@ -94,7 +96,7 @@ int map(thread_pool_t *pool, future_t *future, future_t *from,
         return err;
     }
 
-    future->status = PENDING;
+    future->status = pending;
 
     return 0;
 }

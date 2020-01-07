@@ -1,6 +1,6 @@
-//
 // Created by Anita on 02/01/2020.
 // source: https://codereview.stackexchange.com/questions/141238/implementing-a-generic-queue-in-c
+// Edited, so would store actual given data.
 
 #include "queue.h"
 
@@ -53,12 +53,10 @@ void* dequeue(Queue *q)
 
         q->sizeOfQueue--;
         void *data = temp->data;
-//        free(temp->data);
         free(temp);
         return data;
     }
 }
-
 
 int getQueueSize(Queue *q)
 {

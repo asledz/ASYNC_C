@@ -1,6 +1,6 @@
-//
 // Created by Anita on 02/01/2020.
 // source: https://codereview.stackexchange.com/questions/141238/implementing-a-generic-queue-in-c
+// Edited, so would store actual given data.
 
 #ifndef ASYNC_QUEUE_H
 #define ASYNC_QUEUE_H

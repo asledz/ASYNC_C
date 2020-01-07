@@ -1,21 +1,34 @@
 #include "threadpool.h"
 
-// For declaration of semaphore
+/**
+ * @file threadpool.c
+ * @brief Threadpool implementation file
+ */
+
 #define THREAD_SEMAPHORE 0
 
-static void *threadpool_thread(void *pool);
+/***************************************************
+ ****************** MAIN FUNCTIONS *****************
+ ***************************************************/
+
+static void *thread_pool_thread(void *pool);
 
 int thread_pool_init(thread_pool_t *pool, size_t num_threads) {
+    /* Checks if the pointer is valid. */
     if (!pool) {
         return invalid_argument_error;
     }
 
+    /* Initializes the pool. */
     pool->end = false;
     pool->size = 0;
+
+    /* Inits the attr. */
     if((pthread_attr_init(&(pool->attr))) < 0) {
         return pthread_error;
     }
 
+    /* Initializes semaphores. */
     if((sem_init(&(pool->runnables_semaphore), THREAD_SEMAPHORE, 0))) {
         pthread_attr_destroy(&(pool->attr));
         return semaphore_error;
@@ -25,6 +38,8 @@ int thread_pool_init(thread_pool_t *pool, size_t num_threads) {
         sem_destroy(&(pool->runnables_semaphore));
         return semaphore_error;
     }
+
+    /* Allocates memory and initializes the Queue. */
     if(!(pool->runnables = malloc(sizeof(Queue)))) {
         pthread_attr_destroy(&(pool->attr));
         sem_destroy(&(pool->runnables_semaphore));
@@ -32,6 +47,8 @@ int thread_pool_init(thread_pool_t *pool, size_t num_threads) {
         return memory_error;
     }
     queueInit(pool->runnables, sizeof(runnable_t));
+
+    /* Allocates memory and start worker threads. */
     if(!(pool->threads = malloc(sizeof(pthread_t) * num_threads))) {
         pthread_attr_destroy(&(pool->attr));
         sem_destroy(&(pool->runnables_semaphore));
@@ -40,94 +57,113 @@ int thread_pool_init(thread_pool_t *pool, size_t num_threads) {
         return memory_error;
     }
     while(pool->size != num_threads) {
-        if(pthread_create(&(pool->threads[pool->size]), &(pool->attr), threadpool_thread, (void*)pool)) {
+        if(pthread_create(&(pool->threads[pool->size]), &(pool->attr), thread_pool_thread, (void*)pool)) {
             thread_pool_destroy(pool);
             return pthread_error;
         }
         pool->size++;
     }
+
     return success;
 }
 
 
 void thread_pool_destroy(struct thread_pool *pool) {
+    /* Checks if the pointer is valid. */
     if(pool == NULL) {
         return;
     }
 
-    sem_wait(&(pool->pool_mutex));
+    sem_wait(&(pool->pool_mutex)); //todo
 
+    /* Sets the flag for the threads. */
     pool->end = true;
-
-    if(sem_post(&(pool->pool_mutex))) return;
+    if(sem_post(&(pool->pool_mutex))) return; //todo
     for(size_t i = 0; i < pool->size; i++) {
         sem_post(&(pool->runnables_semaphore));
     }
 
-    void *retval;
+    void *return_value;
     for(size_t i = 0; i < pool->size; i++) {
-        (pthread_join((pool->threads[i]), &retval));
+        /* Waits, until all of the tasks are finished. */
+        (pthread_join((pool->threads[i]), &return_value));
     }
 
+    /* Destroys the pool */
     pthread_attr_destroy(&(pool->attr));
     sem_destroy(&(pool->runnables_semaphore));
     sem_destroy(&(pool->pool_mutex));
     free(pool->runnables);
     free(pool->threads);
-
-    // return SUCCESS;
 }
 
 int defer(struct thread_pool *pool, runnable_t runnable) {
+    /* Checks if the pointer is valid. */
     if(pool == NULL) {
         return invalid_argument_error;
     }
-    while (sem_wait(&(pool->pool_mutex))) {
-        return semaphore_error;
-    }
 
+    /* Gets permission to edit pool. */
+    sem_wait(&(pool->pool_mutex)); //fixme
+
+    /* Checks, if is allowed do add new task to the pool. */
     if(pool->end == true){
         if(sem_post(&(pool->pool_mutex))) return semaphore_error;
         return user_error;
     }
 
-    runnable_t* new_runnable = malloc(sizeof(runnable));
+    /* Adds the task. */
+    runnable_t* new_runnable;
+    if(!(new_runnable = malloc(sizeof(runnable)))) {
+        return memory_error;
+    }
+
     new_runnable->function = runnable.function;
     new_runnable->arg = runnable.arg;
     new_runnable->argsz = runnable.argsz;
 
-    if(enqueue(pool->runnables, new_runnable)) return queue_error;
+    if(enqueue(pool->runnables, new_runnable) || (sem_post(&(pool->runnables_semaphore)))) {
+        free(new_runnable);
+        return queue_error;
+    }
 
-    if(sem_post(&(pool->runnables_semaphore))) return semaphore_error;
-
-    if(sem_post(&(pool->pool_mutex))) return semaphore_error;
+    if(sem_post(&(pool->pool_mutex))) {
+        free(new_runnable);
+        return semaphore_error;
+    }
 
     return success;
 }
 
+/***************************************************
+ ****************** UTIL FUNCTIONS *****************
+ ***************************************************/
 
-static void *threadpool_thread(void *threadpool) {
+static void *thread_pool_thread(void *threadpool) {
 
    thread_pool_t *pool = (thread_pool_t*) threadpool;
 
    while(true){
-       // FIXME
-       if(sem_wait(&(pool->runnables_semaphore))) return semaphore_error;
 
-       // FIXME
-       if(sem_wait(&(pool->pool_mutex))) return semaphore_error;
+       /* Waits for the task. */
+       if(sem_wait(&(pool->runnables_semaphore))) return (void *)semaphore_error; //fixme
 
+       /* Waits for permission to get the pool, when has task. */
+       if(sem_wait(&(pool->pool_mutex))) return (void *)semaphore_error; //fixme
+
+       /* Checks, if has to stop. */
        if(pool->end && getQueueSize(pool->runnables) == 0) {
-           // FIXME
-           if(sem_post(&(pool->pool_mutex))) return semaphore_error;
+           if(sem_post(&(pool->pool_mutex))) return (void *)semaphore_error; //fixme
            break;
        }
 
+       /* Deletes the task from queue. */
        runnable_t *task = dequeue(pool->runnables);
 
-       // FIXME
-       if(sem_post(&(pool->pool_mutex))) return semaphore_error;
+       /* Returns semaphore. */
+       if(sem_post(&(pool->pool_mutex))) return (void *)semaphore_error; //fixme
 
+       /* Run the task. */
        (*(task->function))(task->arg, task->argsz);
        free(task);
    }

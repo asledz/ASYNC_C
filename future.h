@@ -10,26 +10,55 @@
 
 #include "threadpool.h"
 
+/**
+ * @file future.h
+ * @brief Future Header File
+ */
+
 typedef struct callable {
   void *(*function)(void *, size_t, size_t *);
   void *arg;
   size_t argsz;
 } callable_t;
 
+/**
+ *  @struct future_t
+ *  @brief The future struct.
+ *  @var *callable              Function to return the value from.
+ *  @var result             Result value of the callable.
+ *  @var result_size            Size of the result value.
+ *  @var status                 Status of the future(pending/ready).
+ *  @var mutex                  Mutex of future.
+ */
 typedef struct future {
-    //aktualnie na nim wykonujemy
     callable_t *callable;
+    void* result;
     size_t result_size;
     bool status;
     sem_t mutex;
-    void* result;
 } future_t;
 
+/**
+ * @function async
+ * @brief Assigns callable future and adds callable to the threadpool.
+ * @param pool          Where to add callable.
+ * @param future        Future to assign.
+ * @param callable      Callable to run.
+ * @return 0 if all goes correctly, negative values in case of an error(@see thread_pool_error_t for codes).
+ */
 int async(thread_pool_t *pool, future_t *future, callable_t callable);
 
 int map(thread_pool_t *pool, future_t *future, future_t *from,
         void *(*function)(void *, size_t, size_t *));
 
+/**
+ * @function await
+ * @brief Assigns callable future and adds callable to the threadpool.
+ * @param pool          Where to add callable.
+ * @param future        Future to assign.
+ * @param callable      Callable to run.
+ * @return 0 if all goes correctly, negative values in case of an error(@see thread_pool_error_t for codes).
+ */
 void *await(future_t *future);
 
 #endif
