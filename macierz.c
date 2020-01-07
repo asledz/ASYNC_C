@@ -3,6 +3,8 @@
 
 #include "threadpool.h"
 
+#define NUMBER_OF_THREADS 4
+
 typedef struct arg {
     int x;
     int value;
@@ -26,23 +28,23 @@ void count_runnable(void *arg_temp, size_t argsz __attribute__((unused))) {
 
 
 int main () {
-    int n, k;
-    scanf("%d", &k);
-    scanf("%d", &n);
+    long long n, k;
+    scanf("%lld", &k);
+    scanf("%lld", &n);
 
-    int times[k][n];
-    int values[k][n];
+    long long times[k][n];
+    long long values[k][n];
     long long result[k];
 
     for(int i = 0; i < k; i++){
         for(int j = 0; j < n; j++) {
-            scanf("%d", &values[i][j]);
-            scanf("%d", &times[i][j]);
+            scanf("%lld", &values[i][j]);
+            scanf("%lld", &times[i][j]);
         }
     }
-
-    thread_pool_t *pool = malloc(sizeof(thread_pool_t));
-    thread_pool_init(pool, k);
+    thread_pool_t *pool;
+    if(!(pool = malloc(sizeof(thread_pool_t)))) exit(-1);
+    if(thread_pool_init(pool, NUMBER_OF_THREADS) < 0) exit(-1);
 
     runnable_t* my_runnables[n * k];
     arg_t* my_arguments[k * n];
@@ -52,8 +54,8 @@ int main () {
         result[i] = 0;
         (sem_init(&(my_semaphores[i]), THREAD_SEMAPHORE, 1));
         for(int j = 0; j < n; j++) {
-            my_runnables[i * k + j] = malloc(sizeof(runnable_t));
-            my_arguments[i * k + j] = malloc(sizeof(arg_t));
+            if (!(my_runnables[i * k + j] = malloc(sizeof(runnable_t)))) exit(-1);
+            if(!(my_arguments[i * k + j] = malloc(sizeof(arg_t)))) exit (-1);
 
             my_arguments[i * k + j]->x = i;
             my_arguments[i * k + j]->time = times[i][j];
@@ -75,6 +77,7 @@ int main () {
     for(int i = 0; i < k; i++) {
         free(my_runnables[i]);
         free(my_arguments[i]);
+        sem_destroy(&(my_semaphores[i]));
     }
     free(pool);
 
@@ -94,4 +97,8 @@ int main () {
 23 9
 3 11
 7 2
+
+
+| 1 1 12 |
+| 23 3 7 |
  */
