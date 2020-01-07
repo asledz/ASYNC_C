@@ -11,8 +11,9 @@ typedef struct arg {
     long long *res;
 } arg_t;
 
-void count (int *values, int *times, int k, int n, long long *result) {
+void count (const int *values, const int *times, int k, int n, long long *result) {
     long long wynik = 0;
+    printf("w count %d\n", k);
     for(int i = 0; i < n; i++) {
         usleep(times[i] * 1000);
         wynik += values[i];
@@ -22,6 +23,7 @@ void count (int *values, int *times, int k, int n, long long *result) {
 
 void count_runnable(void *arg_temp, size_t argsz) {
     arg_t *arg = (arg_t *) arg_temp;
+    printf("%d w countrunnable\n", arg->k);
     count(arg->val, arg->times, arg->k, arg->n, arg->res);
 }
 
@@ -29,8 +31,6 @@ int main () {
     int n, k;
     scanf("%d", &k);
     scanf("%d", &n);
-
-    printf("chuj ");
 
     int times[k][n];
     int values[k][n];
@@ -42,7 +42,6 @@ int main () {
             scanf("%d", &times[i][j]);
         }
     }
-    /*tu threadpoo; */
 
     thread_pool_t *pool = malloc(sizeof(thread_pool_t));
     thread_pool_init(pool, k);
@@ -61,7 +60,7 @@ int main () {
         my_arguments[i]->res = result;
 
         my_runnables[i]->function = count_runnable;
-        my_runnables[i]->arg = (void *)my_arguments;
+        my_runnables[i]->arg = (void *)my_arguments[i];
         my_runnables[i]->argsz = sizeof(arg_t);
     }
 
@@ -71,15 +70,21 @@ int main () {
     }
 
     printf("japierdole\n");
+    printf("pierdole to\n");
     thread_pool_destroy(pool);
     printf("jebaneścierwo\n");
+    for(int i = 0; i < k; i++) {
+        free(my_runnables[i]);
+        free(my_arguments[i]);
+    }
+    free(pool);
     /* tu threadpool */
 //    for(int i = 0; i < k; i++) {
 //        count(values[i], times[i], i, n, result);
 //    }
 
     for(int i = 0; i < k; i++) {
-        printf("%d\n", result[i]);
+        printf("%ld\n", result[i]);
     }
 
 }
