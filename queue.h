@@ -1,29 +1,33 @@
-// Created by Anita on 02/01/2020.
-// source: https://codereview.stackexchange.com/questions/141238/implementing-a-generic-queue-in-c
-// Edited, so would store actual given data.
+// code based on: https://codereview.stackexchange.com/questions/141238/implementing-a-generic-queue-in-c
+// generic queue implementation.
 
 #ifndef ASYNC_QUEUE_H
 #define ASYNC_QUEUE_H
 
 #include <stddef.h>
 
-typedef struct Node
-{
+/**
+ * @file queue.h
+ * @brief Queue header file
+ */
+
+typedef struct Node {
     void *data;
     struct Node *next;
-}node;
+} node;
 
-typedef struct QueueList
-{
+typedef struct QueueList {
     int sizeOfQueue;
-    size_t memSize;
     node *head;
     node *tail;
-}Queue;
+} Queue;
 
-void queueInit(Queue *q, size_t memSize);
+void queueInit(Queue *q);
+
 int enqueue(Queue *, void *);
-void* dequeue(Queue *);
+
+void *dequeue(Queue *);
+
 int getQueueSize(Queue *);
 
 #endif //ASYNC_QUEUE_H

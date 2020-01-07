@@ -4,28 +4,26 @@
 #include "threadpool.h"
 
 typedef struct arg {
-    int *val;
-    int *times;
-    int k;
-    int n;
-    long long *res;
+    int x;
+    int value;
+    int time;
+    sem_t *semaphores;
+    long long *result;
 } arg_t;
 
-void count (const int *values, const int *times, int k, int n, long long *result) {
-    long long wynik = 0;
-    printf("w count %d\n", k);
-    for(int i = 0; i < n; i++) {
-        usleep(times[i] * 1000);
-        wynik += values[i];
-    }
-    result[k] = wynik;
+
+void add_val(int x, int value, int time, sem_t* semaphores, long long *result) {
+    usleep(time*1000);
+    sem_wait(&(semaphores[x]));
+    result[x] += value;
+    sem_post(&(semaphores[x]));
 }
 
-void count_runnable(void *arg_temp, size_t argsz) {
+void count_runnable(void *arg_temp, size_t argsz __attribute__((unused))) {
     arg_t *arg = (arg_t *) arg_temp;
-    printf("%d w countrunnable\n", arg->k);
-    count(arg->val, arg->times, arg->k, arg->n, arg->res);
+    add_val(arg->x, arg->value, arg->time, arg->semaphores, arg->result);
 }
+
 
 int main () {
     int n, k;
@@ -46,45 +44,54 @@ int main () {
     thread_pool_t *pool = malloc(sizeof(thread_pool_t));
     thread_pool_init(pool, k);
 
-    runnable_t* my_runnables[k];
-    arg_t* my_arguments[k];
+    runnable_t* my_runnables[n * k];
+    arg_t* my_arguments[k * n];
+    sem_t my_semaphores[k];
 
     for(int i = 0; i < k; i++) {
-        my_runnables[i] = malloc(sizeof(runnable_t));
-        my_arguments[i] = malloc(sizeof(arg_t));
+        result[i] = 0;
+        (sem_init(&(my_semaphores[i]), THREAD_SEMAPHORE, 1));
+        for(int j = 0; j < n; j++) {
+            my_runnables[i * k + j] = malloc(sizeof(runnable_t));
+            my_arguments[i * k + j] = malloc(sizeof(arg_t));
 
-        my_arguments[i]->times = times[i];
-        my_arguments[i]->val = values[i];
-        my_arguments[i]->n = n;
-        my_arguments[i]->k = i;
-        my_arguments[i]->res = result;
+            my_arguments[i * k + j]->x = i;
+            my_arguments[i * k + j]->time = times[i][j];
+            my_arguments[i * k + j]->value = values[i][j];
+            my_arguments[i * k + j]->semaphores = my_semaphores;
+            my_arguments[i * k + j]->result = result;
 
-        my_runnables[i]->function = count_runnable;
-        my_runnables[i]->arg = (void *)my_arguments[i];
-        my_runnables[i]->argsz = sizeof(arg_t);
+            my_runnables[i * k + j]->function = count_runnable;
+            my_runnables[i * k + j]->arg = (void *)my_arguments[i * k + j];
+            my_runnables[i * k + j]->argsz = sizeof(arg_t);
+        }
     }
 
-    printf("chuj\n");
-    for(int i = 0; i < k; i++) {
+    for(int i = 0; i < n * k; i++) {
         defer(pool, *my_runnables[i]);
     }
 
-    printf("japierdole\n");
-    printf("pierdole to\n");
     thread_pool_destroy(pool);
-    printf("jebaneścierwo\n");
     for(int i = 0; i < k; i++) {
         free(my_runnables[i]);
         free(my_arguments[i]);
     }
     free(pool);
-    /* tu threadpool */
-//    for(int i = 0; i < k; i++) {
-//        count(values[i], times[i], i, n, result);
-//    }
 
     for(int i = 0; i < k; i++) {
-        printf("%ld\n", result[i]);
+        printf("%lld\n", result[i]);
     }
 
+    return 0;
 }
+
+/*
+2
+3
+1 2
+1 5
+12 4
+23 9
+3 11
+7 2
+ */

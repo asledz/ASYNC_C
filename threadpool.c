@@ -46,7 +46,7 @@ int thread_pool_init(thread_pool_t *pool, size_t num_threads) {
         sem_destroy(&(pool->pool_mutex));
         return memory_error;
     }
-    queueInit(pool->runnables, sizeof(runnable_t));
+    queueInit(pool->runnables);
 
     /* Allocates memory and start worker threads. */
     if(!(pool->threads = malloc(sizeof(pthread_t) * num_threads))) {
@@ -69,34 +69,30 @@ int thread_pool_init(thread_pool_t *pool, size_t num_threads) {
 
 
 void thread_pool_destroy(struct thread_pool *pool) {
-    printf("aaaaa 1\n");
     /* Checks if the pointer is valid. */
     if(pool == NULL) {
         return;
     }
-    printf("aaaaa 2\n");
-    sem_wait(&(pool->pool_mutex));
+    if(sem_wait(&(pool->pool_mutex))){
+        exit(semaphore_error);
+    }
 
-    printf("aaaaa 3\n");
     /* Sets the flag for the threads. */
     pool->end = true;
     if(sem_post(&(pool->pool_mutex))) {
         exit(semaphore_error);
     }
-    printf("aaaaa 4\n");
     for(size_t i = 0; i < pool->size; i++) {
         if(sem_post(&(pool->runnables_semaphore))){
             exit(semaphore_error);
         }
     }
-    printf("aaaaa 5\n");
 
     void *return_value;
     for(size_t i = 0; i < pool->size; i++) {
         /* Waits, until all of the tasks are finished. */
         (pthread_join((pool->threads[i]), &return_value));
     }
-    printf("aaaaa 6\n");
     /* Destroys the pool */
     pthread_attr_destroy(&(pool->attr));
     sem_destroy(&(pool->runnables_semaphore));
@@ -151,12 +147,11 @@ int defer(struct thread_pool *pool, runnable_t runnable) {
  ****************** UTIL FUNCTIONS *****************
  ***************************************************/
 
+// Worker
 static void *thread_pool_thread(void *threadpool) {
-
    thread_pool_t *pool = (thread_pool_t*) threadpool;
 
    while(true){
-
        /* Waits for the task. */
        if(sem_wait(&(pool->runnables_semaphore))) {
            exit(semaphore_error);
@@ -185,6 +180,7 @@ static void *thread_pool_thread(void *threadpool) {
 
        /* Run the task. */
        (*(task->function))(task->arg, task->argsz);
+
        free(task);
    }
 }

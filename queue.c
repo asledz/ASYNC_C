@@ -1,18 +1,21 @@
-// Created by Anita on 02/01/2020.
-// source: https://codereview.stackexchange.com/questions/141238/implementing-a-generic-queue-in-c
-// Edited, so would store actual given data.
+// code based on: https://codereview.stackexchange.com/questions/141238/implementing-a-generic-queue-in-c
+// generic queue implementation.
 
 #include "queue.h"
 
 
 #include <stdlib.h>
 
-void queueInit(Queue *q, size_t memSize)
-{
+/**
+ * @file queue.c
+ * @brief Queue implementation file
+ */
+
+void queueInit(Queue *q) {
     q->sizeOfQueue = 0;
-    q->memSize = memSize;
     q->head = q->tail = NULL;
 }
+
 int enqueue(Queue *q, void *data) {
     node *newNode = (node *) malloc(sizeof(node));
 
@@ -35,18 +38,13 @@ int enqueue(Queue *q, void *data) {
     return 0;
 }
 
-void* dequeue(Queue *q)
-{
-    if(q->sizeOfQueue > 0)
-    {
+void *dequeue(Queue *q) {
+    if (q->sizeOfQueue > 0) {
         node *temp = q->head;
 
-        if(q->sizeOfQueue > 1)
-        {
+        if (q->sizeOfQueue > 1) {
             q->head = q->head->next;
-        }
-        else
-        {
+        } else {
             q->head = NULL;
             q->tail = NULL;
         }
@@ -58,7 +56,6 @@ void* dequeue(Queue *q)
     }
 }
 
-int getQueueSize(Queue *q)
-{
+int getQueueSize(Queue *q) {
     return q->sizeOfQueue;
 }
