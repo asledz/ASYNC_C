@@ -20,7 +20,6 @@ typedef enum {
 typedef struct data {
     future_t *to;
     future_t *from;
-
     void *(*function)(void *, size_t, size_t *);
 } data_t;
 
@@ -112,7 +111,6 @@ void fun(void *temp_future, size_t size  __attribute__((unused))) {
     future_t *future = (future_t *) temp_future;
     future->result = (*(future->callable->function))(future->callable->arg, future->callable->argsz,
                                                      &(future->result_size));
-
     future->status = ready;
     free(future->callable);
     if (sem_post(&(future->mutex))) exit(semaphore_error);
@@ -124,8 +122,8 @@ void map_fun(void *args, size_t size __attribute__((unused))) {
     void *temp_res = await(my_data->from);
     size_t temp_size = my_data->from->result_size;
 
-    my_data->to->status = ready;
     my_data->to->result = (my_data->function)(temp_res, temp_size, &(my_data->from->result_size));
+    my_data->to->status = ready;
 
     if (sem_post(&(my_data->to->mutex))) {
         exit(semaphore_error);

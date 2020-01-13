@@ -51,9 +51,9 @@ int async(thread_pool_t *pool, future_t *future, callable_t callable);
 /**
  * @function map
  * @brief Maps the value returned by one future to another by given function.
- * @param pool          Pool to operate on.
- * @param future        Future to return the value.
- * @param from          Value to map the result.
+ * @param *pool          Pool to operate on.
+ * @param *future        Future to return the value.
+ * @param *from          Value to map the result.
  * @param *function     How to map the value.
  * @return 0 if all goes correctly, negative values in case of an error(@see thread_pool_error_t for codes).
  */

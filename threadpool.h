@@ -17,12 +17,12 @@
 
 typedef enum {
     success                 =  0,
-    invalid_argument_error  = -1,
+    pthread_error           = -1,
     memory_error            = -2,
-    pthread_error           = -3,
+    invalid_argument_error  = -3,
     semaphore_error         = -4,
-    queue_error             = -5,
-    user_error              = -6
+    user_error              = -6,
+    queue_error             = -5
 } thread_pool_error_t;
 
 #define THREAD_SEMAPHORE 0
